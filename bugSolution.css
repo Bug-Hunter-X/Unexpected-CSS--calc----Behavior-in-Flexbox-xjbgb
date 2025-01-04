@@ -1,0 +1,22 @@
+The solution involves ensuring that the parent container has a defined width (either explicitly set or inherited) before attempting to use `calc()` with percentages.  For example, if you're trying to create a sidebar that takes up 100% of the available space minus 10px, make sure the parent container has its width set.  If the parent uses flexbox, setting `width: 100%` on the parent usually solves this.  If percentage calculations within `calc()` still don't produce the intended result, inspect the parent elements' dimensions using browser developer tools to identify possible conflicts.  Here's an example of how to correct the bug:
+
+/* bug.css */
+.container {
+  display: flex;
+}
+
+.sidebar {
+  width: calc(100% - 10px);
+  background-color: lightgray;
+}
+
+/* bugSolution.css */
+.container {
+  display: flex;
+  width: 100%; /* Added width to the parent container */
+}
+
+.sidebar {
+  width: calc(100% - 10px);
+  background-color: lightgray;
+}
